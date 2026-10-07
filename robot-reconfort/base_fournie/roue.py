@@ -18,7 +18,6 @@ def distance_roue(i: int, j: int, n: int) -> int:
     return min(ecart, n - ecart)
 
 def candidats(emotion: int, intensite: int, n_emotions: int, n_intensites: int, rayon: int = RAYON_MAX) -> List[Candidat]:
-
     cles = []
 
     for colonne in range(n_emotions):
