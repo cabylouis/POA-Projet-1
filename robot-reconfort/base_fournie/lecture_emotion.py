@@ -1,16 +1,16 @@
 from reconfort_io import normaliser
-from typing import List, Dict, Tuple, Optionnal
+from typing import List, Dict, Tuple, Optional
 
-def lire(message: str, entrees: List[dict]) -> Optionnal(Tuple(str, str)):
+def lire(message: str, entrees: List[dict]) -> Optional(Tuple(str, str)):
     index: Dict[str, Tuple(str, str)] = {};
 
     for entree in entrees:
         for forme in entree["formes"]:
-            entree[forme] = (emotion["emotion"], intensite["intensite"]);
+            index[forme] = (entree["emotion"], entree["intensite"]);
 
     msg = normaliser(message);
 
-    for mot in message:
+    for mot in msg:
         if mot in index:
             return index[mot];
 
