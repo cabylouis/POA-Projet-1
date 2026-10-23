@@ -28,13 +28,13 @@ class TestLecture(unittest.TestCase):
             self.assertEqual(lu[0], attendu, message)
 
     def test_exemple_enonce(self):
-        self.assertEqual(self.lire("Je suis sidéré, la télévision s'est allumée toute seule."), ("surprise", "forte"));
+        self.assertEqual(self.lire("Je suis sidéré, la télévision s'est allumée toute seule."), ("surprise", "forte"))
 
     def test_ordre_inverse(self):
-        self.assertEqual(self.lire("Toute seule, je suis sidérée.")[0], "tristesse");
+        self.assertEqual(self.lire("Toute seule, je suis sidérée.")[0], "tristesse")
 
     def test_exemples_scenario_01(self):
-        self.assertEqual(self.lire("Je me sens tellement seule ce soir, personne n'est passé."), ("tristesse", "moyenne"));
+        self.assertEqual(self.lire("Je me sens tellement seule ce soir, personne n'est passé."), ("tristesse", "moyenne"))
 
     def test_aucun_reconnu(self):
         self.assertIsNone(self.lire("Bonjour, il fait beau aujourd'hui."))

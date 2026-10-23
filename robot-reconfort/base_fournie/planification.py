@@ -9,7 +9,7 @@ def voisin(actuelle: Case) -> List[Case]:
     x, y = actuelle
     return [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
 
-def plus_court_chemin(depart: Case, arrivees: Iterable[Case], est_traversable: Callable[[Case], bool]) -> Optional[List[Case]] :
+def plus_court_chemin(depart: Case, arrivees: Iterable[Case], est_traversable: Callable[[Case], bool]) -> Optional[List[Case]]:
 
     for a in arrivees:
         if depart == a:
@@ -29,13 +29,14 @@ def plus_court_chemin(depart: Case, arrivees: Iterable[Case], est_traversable: C
             predecesseur[v] = courant
 
             if v in arrivees:
-                return reconstruire(predecesseur, courant)
+                return reconstruire(predecesseur, v)
 
-            file.appendleft(v)
+            file.append(v)
     return None
 
 def reconstruire(predecesseur: Dict[Case, Optional[Case]], fin: Case) -> List[Case]:
     chemin = [fin]
-    while predecesseur[chemin[- 1] is not None]:
+    while predecesseur[chemin[- 1]] is not None:
         chemin.append(predecesseur[chemin[- 1]])
+    chemin.reverse()
     return chemin
