@@ -10,17 +10,31 @@ class Perception:
     contenu_casier: Optional[str] = None
 
 class Resultat:
-    ok: bool = True
-    donnees: object = None
+    def __init__(self, ok: bool = True, donnees: object = None):
+        self.ok = ok
+        self.donnees = donnees
 
 class Connaissances:
-    hauteur: int
-    largeur: int
-    depart: Case
-    armoire: Case
-    dictionnaire: Case
-    residents: Dict[str, Case]      # id -> position
-    noms_residents: Dict[str, str]  # id -> nom
-    emotions: List[str]             # ordre de la roue
-    intensites: List[str]
-    casier_depart: Case
+    def __init__(
+        self,
+        hauteur: int,
+        largeur: int,
+        depart: Case,
+        armoire: Case,
+        dictionnaire: Case,
+        residents: Dict[str, Case],
+        noms_residents: Dict[str, str],
+        emotions: List[str],
+        intensites: List[str],
+        casier_depart: Case
+    ) -> None:
+        self.hauteur = hauteur
+        self.largeur = largeur
+        self.depart = depart
+        self.armoire = armoire
+        self.dictionnaire = dictionnaire
+        self.residents = residents
+        self.noms_residents = noms_residents
+        self.emotions = emotions
+        self.intensites = intensites
+        self.casier_depart = casier_depart
