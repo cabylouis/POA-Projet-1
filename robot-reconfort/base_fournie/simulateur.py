@@ -1,11 +1,11 @@
-from typing import Tuple, Dict, Optional
+from typing import Optional
 
 from perception import (MUR, LIBRE, ARMOIRE, DICTIONNAIRE, RESIDENT, Resultat, Connaissances)
 from planification import (DIRECTIONS, voisin)
 from reconfort_io import ACTIONS
 from selecteur import appliquer
 
-Case = Tuple[int, int]
+Case = tuple[int, int]
 
 SYMBOLES = {"#": MUR, ".": LIBRE, "R": LIBRE, "A": ARMOIRE, "D": DICTIONNAIRE, "P": RESIDENT}
 
@@ -30,11 +30,11 @@ class Environnement:
         self.armoire_pos: Case = tuple(carte["armoire"]["position"])
         self.dict_pos: Case = tuple(carte["dictionnaire"]["position"])
 
-        self.residents: Dict[str, Case] = {}
+        self.residents: dict[str, Case] = {}
         for r in carte["residents"]:
             self.residents[r["id"]] = tuple(r["position"])
 
-        self.casiers: Dict[Case, str] = {}
+        self.casiers: dict[Case, str] = {}
         for c in armoire["casiers"]:
             self.casiers[(c["ligne"], c["colonne"])] = c["objet"]
 
