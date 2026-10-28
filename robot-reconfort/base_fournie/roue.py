@@ -8,6 +8,10 @@ class Candidat(NamedTuple):
     distance: int
     repli: str
 
+    @property
+    def casier(self) -> Tuple[int, int]:
+        return self.ligne, self.colonne
+
 def repli(distance: int, meme_intensite: bool) -> str:
     if distance == 0:
         return "aucun" if meme_intensite else "intensite"
