@@ -1,4 +1,4 @@
-from typing import NamedTuple, Tuple
+from typing import NamedTuple
 
 RAYON_MAX = 2
 
@@ -9,7 +9,7 @@ class Candidat(NamedTuple):
     repli: str
 
     @property
-    def casier(self) -> Tuple[int, int]:
+    def casier(self) -> tuple[int, int]:
         return self.ligne, self.colonne
 
 def repli(distance: int, meme_intensite: bool) -> str:
@@ -21,7 +21,7 @@ def distance_roue(i: int, j: int, n: int) -> int:
     ecart = (i - j) % n
     return min(ecart, n - ecart)
 
-def candidats(emotion: int, intensite: int, n_emotions: int, n_intensites: int, rayon: int = RAYON_MAX) -> List[Candidat]:
+def candidats(emotion: int, intensite: int, n_emotions: int, n_intensites: int, rayon: int = RAYON_MAX) -> list[Candidat]:
     cles = []
 
     for colonne in range(n_emotions):
