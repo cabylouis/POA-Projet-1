@@ -1,8 +1,9 @@
 from collections import deque
-from typing import Tuple, Iterable, Callable, Optional, List, Dict
+from typing import Iterable, Callable, Optional
 
-Case = Tuple[int, int]
+Case = tuple[int, int]
 DIRECTIONS = ("S", "N", "E", "O")
+
 
 def voisin(case: Case, direction: str) -> Case:
     x, y = case
@@ -18,13 +19,20 @@ def voisin(case: Case, direction: str) -> Case:
         raise ValueError(f"direction inconnue: {direction}")
     return x, y
 
-def plus_court_chemin(depart: Case, arrivees: Iterable[Case], est_traversable: Callable[[Case], bool]) -> Optional[List[Case]]:
 
+def direction_entre(a: Case, b: Case) -> str:
+    for d, dl, dc in DIRECTIONS:
+        if (a[0] + dl, a[1] + dc) == b:
+            return d
+    raise ValueError(f"{a} et {b} cases non adjacentes")
+
+
+def plus_court_chemin(depart: Case, arrivees: Iterable[Case], est_traversable: Callable[[Case], bool]) -> Optional[list[Case]]:
     for a in arrivees:
         if depart == a:
             return [a]
 
-    predecesseur : Dict[Case, Optional[Case]] = {depart: None}
+    predecesseur: dict[Case, Optional[Case]] = {depart: None}
     file = deque([depart])
 
     while file:
@@ -46,7 +54,8 @@ def plus_court_chemin(depart: Case, arrivees: Iterable[Case], est_traversable: C
             file.append(v)
     return None
 
-def reconstruire(predecesseur: Dict[Case, Optional[Case]], fin: Case) -> List[Case]:
+
+def reconstruire(predecesseur: dict[Case, Optional[Case]], fin: Case) -> list[Case]:
     chemin = [fin]
     while predecesseur[chemin[- 1]] is not None:
         chemin.append(predecesseur[chemin[- 1]])
