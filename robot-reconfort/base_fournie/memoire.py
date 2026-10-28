@@ -1,13 +1,15 @@
+from typing import Optional, Iterator
+
 from perception import (ARMOIRE, DICTIONNAIRE, LIBRE, MUR, RESIDENT, Connaissances, Perception)
-from planification import voisin, voisins
+from planification import voisin, DIRECTIONS
 from selecteur import Casier, appliquer
 
-Case = Tuple[int, int]
+Case = tuple[int, int]
 
 class CarteMentale:
     def __init__(self, k: Connaissances) -> None:
         self.hauteur, self.largeur = k.hauteur, k.largeur
-        self._cases: Dict[Case, str] = {}
+        self._cases: dict[Case, str] = {}
 
         # Règle 3.1 : le bord est toujours un mur.
         for l in range(self.hauteur):
@@ -38,9 +40,10 @@ class CarteMentale:
         return self._cases.get(case) == LIBRE
 
     def voisines(self, case: Case) -> Iterator[Case]:
-        v = voisins(case)
-        if self.dans_les_bornes(v):
-            yield v
+        for d, _, _ in DIRECTIONS:
+            v = voisin(case, d)
+            if self.dans_les_bornes(v):
+                yield v
 
     def cases_d_acces(self, objet: Case, certaines: bool = False) -> set:
         test = self.libre_connue if certaines else self.traversable_optimiste
@@ -54,7 +57,7 @@ class MemoireArmoire:
     """Casiers déjà vus : casier -> objet (None = vu et vide)."""
 
     def __init__(self) -> None:
-        self._vus: Dict[Casier, Optional[str]] = {}
+        self._vus: dict[Casier, Optional[str]] = {}
 
     def observer(self, casier: Casier, objet: Optional[str]) -> None:
         self._vus[casier] = objet
