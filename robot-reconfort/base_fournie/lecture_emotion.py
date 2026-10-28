@@ -1,8 +1,8 @@
 from reconfort_io import normaliser
-from typing import List, Dict, Tuple, Optional
+from typing import Optional
 
-def lire(message: str, entrees: List[dict]) -> Optional(Tuple(str, str)):
-    index: Dict[str, Tuple(str, str)] = {}
+def lire(message: str, entrees: list[dict]) -> Optional[tuple[str, str]]:
+    index: dict[str, tuple[str, str]] = {}
 
     for entree in entrees:
         for forme in entree["formes"]:
