@@ -1,30 +1,35 @@
-from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 
-Case = Tuple[int, int]
+Case = tuple[int, int]
 
 MUR, LIBRE, ARMOIRE, DICTIONNAIRE, RESIDENT = ("mur", "libre", "armoire", "dictionnaire", "resident")
 
 @dataclass
 class Perception:
-    voisins: Dict[str, str]
+    """ Informations perçues par le robot dans son environnement. """
+
+    voisins: dict[str, str]
     devant_armoire: bool = False
-    contenu_casier: Optional[str] = None
+    contenu_casier: str | None = None
 
 @dataclass
 class Resultat:
+    """ Résultat d'une action exécutée par le robot. """
+
     ok: bool = True
-    donnees: object = None
+    donnees: list[dict[str, str]] | None = None
 
 @dataclass
 class Connaissances:
+    """ Informations connues par le robot sur son environnement. """
+
     hauteur: int
     largeur: int
     depart: Case
     armoire: Case
     dictionnaire: Case
-    residents: Dict[str, Case]
-    noms_residents: Dict[str, str]
-    emotions: List[str]
-    intensites: List[str]
+    residents: dict[str, Case]
+    noms_residents: dict[str, str]
+    emotions: list[str]
+    intensites: list[str]
     casier_depart: Case

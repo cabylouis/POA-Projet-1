@@ -1,7 +1,10 @@
 from reconfort_io import normaliser
-from typing import Optional
 
-def lire(message: str, entrees: list[dict]) -> Optional[tuple[str, str]]:
+def lire(message: str, entrees: list[dict]) -> tuple[str, str] | None:
+    """ Identifie l'émotion et son intensité à partir d'un message
+    en recherchant les mots associés dans le dictionnaire émotionnel.
+    """
+
     index: dict[str, tuple[str, str]] = {}
 
     for entree in entrees:
@@ -14,4 +17,4 @@ def lire(message: str, entrees: list[dict]) -> Optional[tuple[str, str]]:
         if mot in index:
             return index[mot]
 
-    return None;
+    return None
