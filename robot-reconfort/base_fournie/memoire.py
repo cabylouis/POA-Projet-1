@@ -109,17 +109,17 @@ class MemoireArmoire:
 class Memoire:
     """ Intégralité de la mémoire du robot à chaque instant. """
 
-    def __init__(self, k: Connaissances) -> None:
+    def __init__(self, connaissances: Connaissances) -> None:
         """ Initialise la mémoire à partir des connaissances initiales. """
 
-        self.k = k
-        self.carte = CarteMentale(k)
+        self.connaissances = connaissances
+        self.carte = CarteMentale(connaissances)
         self.armoire = MemoireArmoire()
-        self.position: Case = k.depart
-        self.selecteur: Casier = k.casier_depart
+        self.position: Case = connaissances.depart
+        self.selecteur: Casier = connaissances.casier_depart
         self.objet_porte: str | None = None
-        self.n_lignes = len(k.intensites)
-        self.n_colonnes = len(k.emotions)
+        self.n_lignes = len(connaissances.intensites)
+        self.n_colonnes = len(connaissances.emotions)
 
     def integrer(self, perception: Perception) -> None:
         """ Intègre les nouvelles perceptions à la mémoire. """

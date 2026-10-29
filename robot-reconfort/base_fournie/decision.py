@@ -118,7 +118,7 @@ class Decideur:
 
         while True:
             if self.phase == Phase.DICTIONNAIRE:
-                etat,action = self.aller_adjacent(self.memoire.k.dictionnaire, "Vers le dictionnaire")
+                etat,action = self.aller_adjacent(self.memoire.connaissances.dictionnaire, "Vers le dictionnaire")
 
                 if etat == Etat.ARRIVE:
                     return Action("CONSULTER")
@@ -133,7 +133,7 @@ class Decideur:
                     self.phase = Phase.ARMOIRE
                     continue
 
-                etat, action = self.aller_adjacent(self.memoire.k.residents[self.resident], f"verification : {self.resident} est-il atteignable ?")
+                etat, action = self.aller_adjacent(self.memoire.connaissances.residents[self.resident], f"verification : {self.resident} est-il atteignable ?")
                 if etat == Etat.BLOQUE:
                     return self.echec("Resident inaccessible")
 
@@ -170,7 +170,7 @@ class Decideur:
 
             self.emotion, self.intensite = lu
 
-            self.liste = candidats(self.memoire.k.emotions.index(self.emotion), self.memoire.k.intensites.index(self.intensite), len(self.memoire.k.emotions), len(self.memoire.k.intensites))
+            self.liste = candidats(self.memoire.connaissances.emotions.index(self.emotion), self.memoire.connaissances.intensites.index(self.intensite), len(self.memoire.connaissances.emotions), len(self.memoire.connaissances.intensites))
             self.phase = Phase.VERIFICATION
 
         elif action.nom == "PRENDRE":
@@ -214,7 +214,7 @@ class Decideur:
          du robot en utilisant les cases libres connues.
          """
 
-        pos_resident = self.memoire.k.residents[self.resident]
+        pos_resident = self.memoire.connaissances.residents[self.resident]
         arrivees = self.memoire.carte.cases_d_acces(pos_resident, certaines = True)
 
         return plus_court_chemin(self.memoire.position, arrivees, self.memoire.carte.libre_connue) is not None
@@ -224,7 +224,7 @@ class Decideur:
         et récupérer un objet dans l'armoire.
         """
 
-        etat, action = self.aller_adjacent(self.memoire.k.armoire, f"Vers l'armoire")
+        etat, action = self.aller_adjacent(self.memoire.connaissances.armoire, f"Vers l'armoire")
 
         if etat == Etat.BLOQUE:
             return self.echec("Armoire inaccessible")
@@ -295,7 +295,7 @@ class Decideur:
         et lui remettre l'objet transporté.
         """
 
-        etat, action = self.aller_adjacent(self.memoire.k.residents[self.resident], f"Vers {self.resident}")
+        etat, action = self.aller_adjacent(self.memoire.connaissances.residents[self.resident], f"Vers {self.resident}")
 
         if etat == Etat.BLOQUE:
             return self.echec("Resident inaccessible")

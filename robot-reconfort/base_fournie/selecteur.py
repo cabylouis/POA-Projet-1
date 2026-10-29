@@ -28,7 +28,6 @@ def mouv_horizontaux(colonne_1: int, colonne_2: int, n_emotions: int) -> list[li
     """ Retourne les déplacements horizontaux les plus courts entre deux colonnes.
     Renvoie les deux possibilités si les déplacements Est et Ouest
     ont la même longueur.
-
     """
 
     distance_est = (colonne_2 - colonne_1) % n_emotions
