@@ -72,7 +72,7 @@ def plus_court_chemins(depart: Casier, arrivee: Casier, n_colonnes: int) -> list
     for mouvements_horizontaux in mouv_horizontaux(depart[1], arrivee[1], n_colonnes):
         longueur_totale = nb_mouvements_verticaux + len(mouvements_horizontaux)
 
-        for positions_verticales in combinations(range(longueur_totale), len(mouvements_verticaux)):
+        for positions_verticales in combinations(range(longueur_totale), nb_mouvements_verticaux):
             chemin = []
 
             for indice in range(longueur_totale):
