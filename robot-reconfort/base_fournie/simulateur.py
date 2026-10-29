@@ -2,6 +2,7 @@ from perception import (MUR, LIBRE, ARMOIRE, DICTIONNAIRE, RESIDENT, Resultat, C
 from planification import (DIRECTIONS, voisin)
 from reconfort_io import ACTIONS
 from selecteur import appliquer_deplacement
+from perception import Perception
 
 Case = tuple[int, int]
 
@@ -78,6 +79,19 @@ class Environnement:
         """ Retourne la nature de la case indiquée. """
 
         return self.plan[case[0]][case[1]]
+
+    def percevoir(self) -> Perception:
+        """Retourne la perception actuelle du robot."""
+
+        voisins = {}
+
+        for direction in DIRECTIONS:
+            voisins[direction] = self.type(voisin(self.pos, direction))
+
+        devant = adjacent(self.pos, self.armoire_pos)
+        contenu = self.casiers[self.selecteur_pos] if devant else None
+
+        return Perception(voisins, devant, contenu)
 
     def executer(self, nom_action: str, argument_action: str | None = None) -> Resultat:
         """ Vérifie et exécute l'action demandée. """
