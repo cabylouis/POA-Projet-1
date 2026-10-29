@@ -16,7 +16,10 @@ class Candidat(NamedTuple):
         return self.ligne, self.colonne
 
 def repli(distance: int, meme_intensite: bool) -> str:
-    """ Détermine la stratégie de repli selon la distance et l'intensité. """
+    """ Détermine la stratégie de repli selon la distance et l'intensité.
+
+    Voir Annexe C.5
+    """
 
     if distance == 0:
         return "aucun" if meme_intensite else "intensite"

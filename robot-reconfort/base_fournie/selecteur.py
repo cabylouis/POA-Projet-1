@@ -28,6 +28,7 @@ def mouv_horizontaux(colonne_1: int, colonne_2: int, n_emotions: int) -> list[li
     """ Retourne les déplacements horizontaux les plus courts entre deux colonnes.
     Renvoie les deux possibilités si les déplacements Est et Ouest
     ont la même longueur.
+
     """
 
     distance_est = (colonne_2 - colonne_1) % n_emotions
@@ -48,6 +49,8 @@ def distance(casier_1: Casier, casier_2: Casier, n_colonnes: int) -> int:
     """ Calcule la distance minimale entre deux casiers.
     Le résultat est le déplacement vertical plus le déplacement
     horizontal le plus court sur l'armoire circulaire.
+
+    Voir Annexe B.7
     """
 
     ecart_horizontal = (casier_2[1] - casier_1[1]) % n_colonnes
@@ -55,7 +58,10 @@ def distance(casier_1: Casier, casier_2: Casier, n_colonnes: int) -> int:
     return abs(casier_2[0] - casier_1[0]) + min(ecart_horizontal, n_colonnes - ecart_horizontal)
 
 def plus_court_chemins(depart: Casier, arrivee: Casier, n_colonnes: int) -> list[list[str]]:
-    """ Génère tous les plus courts chemins entre deux casiers. """
+    """ Génère tous les plus courts chemins entre deux casiers.
+
+    Voir Annexe C.3 et C.4
+    """
 
     ecart_vertical = arrivee[0] - depart[0]
     mouvements_verticaux = "S" if ecart_vertical > 0 else "N"

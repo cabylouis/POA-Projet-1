@@ -33,7 +33,7 @@ def voisins(case: Case) -> list[Case]:
 
     return voisins_case
 
-def direction_entre(a: Case, b: Case):
+def direction_entre(a: Case, b: Case) -> str:
     """ Retourne la direction permettant d'aller de b vers a. """
 
     x, y = a[0] - b[0], a[1] - b[1]
