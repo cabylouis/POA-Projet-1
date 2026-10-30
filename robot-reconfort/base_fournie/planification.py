@@ -34,9 +34,9 @@ def voisins(case: Case) -> list[Case]:
     return voisins_case
 
 def direction_entre(a: Case, b: Case) -> str:
-    """ Retourne la direction permettant d'aller de b vers a. """
+    """ Retourne la direction permettant d'aller de a vers b. """
 
-    x, y = a[0] - b[0], a[1] - b[1]
+    x, y = b[0] - a[0], b[1] - a[1]
 
     if abs(x) + abs(y) != 1:
         raise Exception(f"Cases non adjacentes : {a}, {b}")
