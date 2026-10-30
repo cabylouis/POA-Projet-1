@@ -47,7 +47,7 @@ def lire_equipe() -> list[str]:
     """ Lit les membres de l'équipe depuis rendu.json. """
 
     donnees_rendu = json.loads((Path(__file__).parent / "rendu.json").read_text(encoding = "utf-8"))
-    equipe = donnees_rendu.get("Équipe", [])
+    equipe = donnees_rendu.get("equipe", [])
 
     if isinstance(equipe, list):
         membres = []
@@ -61,7 +61,7 @@ def lire_equipe() -> list[str]:
 
 
 def executer_scenario(carte: dict, scenario: dict, dictionnaire: dict, armoire: dict, equipe: list[str] | None,
-                      afficher: bool = False, delai: float = 0.0) -> Trace:
+                      afficher: bool = False, delai: float = 0.1) -> Trace:
     """ Exécute les demandes du scénario et enregistre les résultats.
     Initialise le monde, puis répète pour chaque demande les étapes de
     perception, de mémorisation, de décision et d'exécution des actions.
@@ -108,7 +108,7 @@ def executer_scenario(carte: dict, scenario: dict, dictionnaire: dict, armoire: 
 def lire_arguments(argv: list[str]):
     """ Analyse les arguments fournis en ligne de commande. """
 
-    parser = argparse.ArgumentParser(prog="agent.py", description=__doc__.split("\n")[0])
+    parser = argparse.ArgumentParser(prog="agent.py")
 
     parser.add_argument("carte")
     parser.add_argument("scenario")
