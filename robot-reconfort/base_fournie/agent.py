@@ -116,7 +116,7 @@ def lire_arguments(argv: list[str]):
     parser.add_argument("trace")
 
     parser.add_argument("--afficher", action = "store_true")
-    parser.add_argument("--delai", type = float)
+    parser.add_argument("--delai", type = float, default=0.1)
     
     return parser.parse_args(argv)
 
