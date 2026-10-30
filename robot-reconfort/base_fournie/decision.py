@@ -121,7 +121,7 @@ class Decideur:
                 etat,action = self.aller_adjacent(self.memoire.connaissances.dictionnaire, "Vers le dictionnaire")
 
                 if etat == Etat.BLOQUE:
-                    return self.echec("Dictionnaire inaccessible")
+                    return self.echec("dictionnaire inaccessible")
 
                 if etat == Etat.ARRIVE:
                     return Action("CONSULTER")
@@ -135,7 +135,7 @@ class Decideur:
 
                 etat, action = self.aller_adjacent(self.memoire.connaissances.residents[self.resident], f"verification : {self.resident} est-il atteignable ?")
                 if etat == Etat.BLOQUE:
-                    return self.echec("Resident inaccessible")
+                    return self.echec("resident inaccessible")
 
                 if etat == Etat.ARRIVE:
                     self.phase = Phase.ARMOIRE
@@ -159,13 +159,13 @@ class Decideur:
 
         if action.nom == "CONSULTER":
             if resultat.donnees is None:
-                self.issue = Issue(False, "Données invalides")
+                self.issue = Issue(False, "donnees invalides")
                 return
 
             lu = lire(self.message, resultat.donnees)
 
             if lu is None:
-                self.issue = Issue(False, "Emotion indéterminée")
+                self.issue = Issue(False, "emotion indeterminee")
                 return
 
             self.emotion, self.intensite = lu
@@ -204,7 +204,7 @@ class Decideur:
 
         if self.plan is not None and self.plan[0] == cible:
             if len(chemin) != len(self.plan[1]) - 1:
-                commentaire = f"Re-planification ({raison})"
+                commentaire = f"replanification ({raison})"
 
         self.plan = (cible, chemin)
         return Etat.AVANCE, Action("AVANCER", direction_entre(chemin[0], chemin[1]), commentaire)
@@ -227,14 +227,14 @@ class Decideur:
         etat, action = self.aller_adjacent(self.memoire.connaissances.armoire, f"Vers l'armoire")
 
         if etat == Etat.BLOQUE:
-            return self.echec("Armoire inaccessible")
+            return self.echec("armoire inaccessible")
 
         if etat == Etat.AVANCE:
             return action
 
         cible = self.prochain_casier()
         if cible is None:
-            return self.echec("Armoire vide")
+            return self.echec("armoire vide")
 
         if self.memoire.selecteur == cible.casier():
             objet = self.memoire.armoire.objet(cible.casier())
@@ -298,7 +298,7 @@ class Decideur:
         etat, action = self.aller_adjacent(self.memoire.connaissances.residents[self.resident], f"Vers {self.resident}")
 
         if etat == Etat.BLOQUE:
-            return self.echec("Resident inaccessible")
+            return self.echec("resident inaccessible")
 
         if etat == Etat.AVANCE:
             return action
