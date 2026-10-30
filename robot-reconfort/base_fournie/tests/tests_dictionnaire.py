@@ -1,15 +1,12 @@
 import unittest
-import json
 
-from pathlib import Path
 from lecture_emotion import lire
+from tests.utils import DICO
 
-RACINE = Path(__file__).resolve().parent.parent
-DICT = json.loads((RACINE / "donnees" / "dictionnaire.json").read_text("utf-8"))
 
 class TestLecture(unittest.TestCase):
     def lire(self, msg):
-        return lire(msg, DICT["entrees"])
+        return lire(msg, DICO["entrees"])
 
     def test_une_phrase_par_emotion(self):
         cas = {

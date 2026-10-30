@@ -1,11 +1,7 @@
 import unittest
-from pathlib import Path
 
 from roue import candidats, distance_roue
 from selecteur import appliquer_deplacement, casiers_traverses, distance, plus_court_chemins
-
-RACINE = Path(__file__).resolve().parent.parent
-
 
 class TestSelecteur(unittest.TestCase):
     def test_bouclage_des_colonnes(self):
