@@ -10,12 +10,10 @@ SYMBOLES = {"#": MUR, ".": LIBRE, "R": LIBRE, "A": ARMOIRE, "D": DICTIONNAIRE, "
 
 class ActionIllegale(Exception):
     """ Action impossible ou non autorisée dans l'environnement. """
-
     pass
 
 def adjacent(a: Case, b: Case) -> bool:
     """ Indique si deux cases sont adjacentes. """
-
     return abs(a[0] - b[0]) + abs(a[1] - b[1]) == 1
 
 class Environnement:

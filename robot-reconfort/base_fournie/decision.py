@@ -117,18 +117,18 @@ class Decideur:
             return self.issue
 
         while True:
-            if self.phase == Phase.DICTIONNAIRE:
+            if self.phase is Phase.DICTIONNAIRE:
                 etat,action = self.aller_adjacent(self.memoire.connaissances.dictionnaire, "Vers le dictionnaire")
-
-                if etat == Etat.ARRIVE:
-                    return Action("CONSULTER")
 
                 if etat == Etat.BLOQUE:
                     return self.echec("Dictionnaire inaccessible")
 
+                if etat == Etat.ARRIVE:
+                    return Action("CONSULTER")
+
                 return action
 
-            if self.phase == Phase.VERIFICATION:
+            if self.phase is Phase.VERIFICATION:
                 if self.resident_accessible():
                     self.phase = Phase.ARMOIRE
                     continue
@@ -143,7 +143,7 @@ class Decideur:
 
                 return action
 
-            if self.phase == Phase.ARMOIRE:
+            if self.phase is Phase.ARMOIRE:
                 return self.decider_armoire()
 
             return self.decider_livraison()
