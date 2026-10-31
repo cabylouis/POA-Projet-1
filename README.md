@@ -1,5 +1,7 @@
 # Robot réconfort - Projet 1 - HAI716I
 
+https://github.com/cabylouis/POA-Projet-1
+
 Équipe: CABY Louis, GUIONNIERE Martin
 
 Un robot de service qui doit, pour chaque message d'un résident, lire l'émotion exprimée dans un dictionnaire, trouver l'objet de réconfort correspondant dans une armoire à casiers, puis le rapporter au résident. Le robot ne connaît pas les murs : il les découvre en se déplaçant, tient à jour une carte mentale et replanifie quand la réalité contredit son plan.
